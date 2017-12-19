@@ -1,8 +1,9 @@
-
-# This 
+# Overview 
 This is a Dropbox binding for Azure Functions / WebJobs. It relies on the Dropbox.Net sdk (see  https://github.com/dropbox/dropbox-sdk-dotnet/ ) 
 
 This supports binding to the DropboxClient object and binding to streams. 
+
+This extension is published on nuget as:  https://github.com/Azure/azure-functions-dropbox-extension 
 
 
 # Examples
