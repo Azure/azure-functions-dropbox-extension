@@ -2,6 +2,15 @@
 
   <PropertyGroup>
     <TargetFramework>netstandard2.0</TargetFramework>
+    <GeneratePackageOnBuild>true</GeneratePackageOnBuild>
+    <Description>This provides Azure Function / WebJobs integration with Dropbox.</Description>
+    <Company>Microsoft</Company>
+    <PackageId>Microsoft.Azure.WebJobs.Extensions.DropBox</PackageId>
+    <Authors>Microsoft</Authors>
+    <PackageLicenseUrl>http://www.microsoft.com/web/webpi/eula/aspnetcomponent_rtw_enu.htm</PackageLicenseUrl>
+    <RepositoryUrl>https://github.com/Azure/azure-functions-dropbox-extension</RepositoryUrl>
+    <RepositoryType>github</RepositoryType>
+    <PackageTags>WebJobs, Functions, Dropbox</PackageTags>
   </PropertyGroup>
 
   <ItemGroup>
