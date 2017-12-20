@@ -50,6 +50,8 @@ This does not work on Azure Functions v1.
 To consume from Azure Functions, you must load the extension (see https://github.com/Azure/azure-webjobs-sdk-script/wiki/Binding-Extensions-Management ) 
 The binding type is "Dropbox". Note that dropbox paths start with a '/' whereas Blob paths do not. Elsewise, this behaves just like blob. 
 
+# License
+This project is under the benevolent umbrella of the .NET Foundation and is licensed under the MIT License
 
 # Contributing
 
