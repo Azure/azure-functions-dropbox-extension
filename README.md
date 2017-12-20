@@ -3,12 +3,14 @@ This is a Dropbox binding for Azure Functions / WebJobs. It relies on the Dropbo
 
 This supports binding to the DropboxClient object and binding to streams. 
 
-This extension is published on nuget as:  https://github.com/Azure/azure-functions-dropbox-extension 
+This extension is published on nuget as:  https://www.myget.org/feed/azure-appservice/package/nuget/Microsoft.Azure.WebJobs.Extensions.DropBox
 
 
 # Examples
 Set the Dropbox OAuth token in an appsetting, named 'cx1'. 
 Here's how to get an Oauth token for your account: https://blogs.dropbox.com/developers/2014/05/generate-an-access-token-for-your-own-account/ 
+
+See more examples in the Sample's project at https://github.com/Azure/azure-functions-dropbox-extension/blob/master/Samples/Program.cs
 
 ## Read 
         
@@ -38,6 +40,10 @@ Here's how to get an Oauth token for your account: https://blogs.dropbox.com/dev
             // Dropbox stream is chunking and supports large file copies. 
             await src.CopyToAsync(dest);
         }
+
+## Trigger not provided
+This binding does not have triggers. 
+You can subscribe to a Dropbox Webhook (see https://www.dropbox.com/developers/reference/webhooks ) via HTTP Trigger and then use these bindings in conjuction with that. 
 
 
 # Contributing
