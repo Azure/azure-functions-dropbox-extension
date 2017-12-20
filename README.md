@@ -7,7 +7,7 @@ This extension is published on nuget as:  https://www.myget.org/feed/azure-appse
 
 
 # Examples
-Set the Dropbox OAuth token in an appsetting, named 'cx1'. 
+Set the Dropbox OAuth token in an appsetting. In the examples below, it uses the appsetting named 'cx1'. 
 Here's how to get an Oauth token for your account: https://blogs.dropbox.com/developers/2014/05/generate-an-access-token-for-your-own-account/ 
 
 See more examples in the Sample's project at https://github.com/Azure/azure-functions-dropbox-extension/blob/master/Samples/Program.cs
@@ -44,6 +44,11 @@ See more examples in the Sample's project at https://github.com/Azure/azure-func
 ## Trigger not provided
 This binding does not have triggers. 
 You can subscribe to a Dropbox Webhook (see https://www.dropbox.com/developers/reference/webhooks ) via HTTP Trigger and then use these bindings in conjuction with that. 
+
+# Consuming from Functions v2
+This does not work on Azure Functions v1.
+To consume from Azure Functions, you must load the extension (see https://github.com/Azure/azure-webjobs-sdk-script/wiki/Binding-Extensions-Management ) 
+The binding type is "Dropbox". Note that dropbox paths start with a '/' whereas Blob paths do not. Elsewise, this behaves just like blob. 
 
 
 # Contributing
