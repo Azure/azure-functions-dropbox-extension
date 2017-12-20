@@ -24,8 +24,9 @@ namespace WebJobs.DropboxExtension
         private string _sessionId;
         private ulong _uploadedByteCount = 0; 
 
+        // Specify Overwrite mode. 
         public ChunkUploadStream(DropboxClient client, string path)
-            : this(client, new CommitInfo(path))
+            : this(client, new CommitInfo(path, WriteMode.Overwrite.Instance))
         {
         }
 

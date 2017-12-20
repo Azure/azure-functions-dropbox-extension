@@ -11,6 +11,7 @@
     <RepositoryUrl>https://github.com/Azure/azure-functions-dropbox-extension</RepositoryUrl>
     <RepositoryType>github</RepositoryType>
     <PackageTags>WebJobs, Functions, Dropbox</PackageTags>
+    <Version>1.0.1</Version>
   </PropertyGroup>
 
   <ItemGroup>

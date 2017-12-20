@@ -12,30 +12,6 @@ using Microsoft.Azure.WebJobs.Host.Config;
 
 namespace WebJobs.DropboxExtension
 {
-    // Ses Dropbox.NET client. https://github.com/dropbox/dropbox-sdk-dotnet/
-    // Nuget: Dropbox.Api 4.6.0
-    // See https://www.dropbox.com/developers/documentation/dotnet#tutorial 
-    [Binding]
-    public class DropboxAttribute : Attribute
-    {
-        public DropboxAttribute(string path)
-        {
-            this.Path = path;
-        }
-
-        // See validation at: https://github.com/dropbox/dropbox-sdk-dotnet/blob/452ea467b39c7708a30735a5293427ef34cf4aa1/dropbox-sdk-dotnet/Dropbox.Api/Generated/Files/CommitInfo.cs#L61
-        // Should start with '/'
-        [AutoResolve]        
-        [RegularExpression(@"\A(?:(/(.|[\r\n])*)|(ns:[0-9]+(/.*)?)|(id:.*))\z")]
-        public string Path { get; set; }
-
-        public FileAccess Access { get; set; }
-
-        // Optional. If missing, use from Extension
-        [AppSetting]
-        public string Connection {get;set;}
-    }
-
     // References nuget: Dropbox.API 4.6.0 
     public class DropboxExtension : IExtensionConfigProvider
     {
@@ -45,8 +21,12 @@ namespace WebJobs.DropboxExtension
         {
             var rule = context.AddBindingRule<DropboxAttribute>();
 
-            rule.BindToInput<DropboxClient>(attr => GetClient(attr));
-            rule.BindToStream(ToStream, FileAccess.ReadWrite);
+            rule.WhenIsNull(nameof(DropboxAttribute.Path)).
+                WhenIsNull(nameof(DropboxAttribute.Access)).
+                BindToInput<DropboxClient>(attr => GetClient(attr));
+
+            rule.WhenIsNotNull(nameof(DropboxAttribute.Path)).
+                BindToStream(ToStream, FileAccess.ReadWrite);
         }
 
         private async Task<Stream> ToStream(DropboxAttribute attribute, ValueBindingContext arg2)
@@ -76,7 +56,7 @@ namespace WebJobs.DropboxExtension
                 return stream;
             }
 
-            throw new NotImplementedException();
+            throw new InvalidOperationException("Cannot bind using FileAccess.ReadWrite: must be either read or write.");
         }
 
         public DropboxClient GetClient(DropboxAttribute attribute)
